@@ -28,14 +28,18 @@ function App() {
   }
 
   function updateNote(text) {
-    setNotes((oldNotes) =>
-      oldNotes.map((oldNote) => {
-        return oldNote.id === currentNoteId
-          ? { ...oldNote, body: text }
-          : oldNote
-      })
-    )
+    setNotes((prev) => {
+      return prev.reduce((initial, nextNote) => {
+        if (nextNote.id === currentNoteId) {
+          initial.unshift({ ...nextNote, body: text })
+        } else {
+          initial.push(nextNote)
+        }
+        return initial
+      }, [])
+    })
   }
+
 
   function findCurrentNote() {
     return (
