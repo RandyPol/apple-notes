@@ -40,7 +40,9 @@ function App() {
     })
   }
 
-  function deleteNote(text) {
+  function deleteNote(e) {
+    console.log(e)
+    e.stopPropagation()
     setNotes((prev) => {
       return prev.filter((note) => note.id !== currentNoteId)
     })
