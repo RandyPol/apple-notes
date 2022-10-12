@@ -10,7 +10,9 @@ const Sidebar = (props) => {
         onClick={() => props.setCurrentNoteId(note.id)}
       >
         <h4 className="text-snippet">{note.body.split('\n')[0]}</h4>
+        { note.id === props.currentNote.id && <h5 onClick={props.deleteNote} className='deleteBtn'>Delete</h5>}
       </div>
+    
     </div>
   ))
 
